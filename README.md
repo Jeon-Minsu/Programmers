@@ -1,6 +1,7 @@
 # Programmers
 프로그래머스 코딩테스트 연습 repo
 
+# Level 0
 ## Day1
 ### 기억할 내용
 - stride(from:to:by:)
@@ -13,3 +14,37 @@
 - 특정 필터링이 들어간 일정한 간격의 배열을 만들고 싶다면 (start...num).filter 사용
   - (start...num)의 타입은 (ClosedRange<Int>)
   - filter 함수를 통해 Array를 반환하는 원리
+
+## Day2
+### 기억할 내용
+- 단방향 범위 연산자
+    - n 이하: ...n
+    - n 이상: n...
+    - n 미만: ..<n
+- 문자열(String) 역순 정렬
+    - String("문자열".reversed())
+- 문자열 반복
+    - String(repeating:count:)
+- 배열 내 특정 범위 지정
+    - array[startIndex...EndIndex]
+- 배열 오름차순, 내림차순 정렬
+    - 오름차순
+        - array.sorted()
+        - array.sorted(by: <)
+    - 내림차순
+        - numbers.sorted(by: >)
+- switch 문 내 tuple 범위 case
+    ```swift
+    switch (element1, element2) {
+        case (0..., 0...): 
+            return 1
+        case (...0, 0...): 
+            return 2
+        case (...0, ...0): 
+            return 3
+        case (0..., ...0): 
+            return 4
+        default: 
+            return 0
+    }
+    ```
