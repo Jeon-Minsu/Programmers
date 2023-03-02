@@ -48,3 +48,12 @@
             return 0
     }
     ```
+    
+## Day3
+### 기억할 내용
+- String의 경우 split 불필요
+    - map을 통해서 이미 character 하나로 분리
+- Int 범위 유념
+    - 30!의 경우 Int 범위를 넘어가기 때문에, Double, Decimal... 등 변경 필요
+- 이중 배열의 경우 미리 repeating을 통해 요소를 채우는 것도 좋은 방법
+    - 추가로, 배열의 경우 .indices롤 통해 sequence 호출 가능
