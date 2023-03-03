@@ -21,30 +21,22 @@
 
 import Foundation
 
-func throwBall(_ numbers:[Int], _ k:Int) -> Int {
-//    if numbers.count % 2 == 0 {
-//        let period = (numbers.count / 2)
-//        let index = k % period == 0 ? period : k % period
-//        let answer = numbers[2 * (index - 1)]
-//
-//        return answer
-//    } else {
-//        let realNumber = k % numbers.count
-//
-//        if realNumber <= ((numbers.count + 1) / 2) {
-//            let newNumbers = numbers.filter { $0 % 2 != 0 }
-//            let answer = newNumbers[realNumber - 1]
-//
-//            return answer
-//        } else {
-//            let newNumbers = numbers.filter { $0 % 2 == 0 }
-//            let index = k % numbers.count
-//
-//            let answer = newNumbers[index]
-//
-//            return answer
-//        }
-//    }
+func throwBall(_ numbers: [Int], _ k: Int) -> Int {
+    let oddArray = numbers.filter { $0 % 2 != 0 }
+    let evenArray = numbers.filter { $0 % 2 == 0 }
+    var index = k % numbers.count == 0 ? numbers.count : k % numbers.count
 
-    return 0
+    if index <= Int(ceil(Double(numbers.count) / 2)) {
+        return oddArray[index - 1]
+    } else {
+        index -= Int(ceil(Double(numbers.count) / 2))
+
+        return numbers.count % 2 != 0 ? evenArray[index - 1] : oddArray[index - 1]
+    }
+}
+
+// MARK: - 본인이 생각하는 모범 답안
+
+func solution2(_ numbers: [Int], _ k: Int) -> Int {
+    return (1...k).map { _ in numbers }.flatMap { $0 }[2 * (k - 1)]
 }
