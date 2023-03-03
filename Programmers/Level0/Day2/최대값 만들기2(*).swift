@@ -29,7 +29,7 @@ func createMaximum2In(_ numbers: [Int]) -> Int {
 // MARK: - 본인이 생각하는 모범 답안
 
 func solution1(_ numbers:[Int]) -> Int {
-    var numbers = numbers.sorted(by: <)
+    let numbers = numbers.sorted(by: <)
 
     return max(numbers[0] * numbers[1], numbers[numbers.count-1] * numbers[numbers.count - 2])
 }
