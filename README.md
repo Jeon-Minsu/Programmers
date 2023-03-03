@@ -57,3 +57,14 @@
     - 30!의 경우 Int 범위를 넘어가기 때문에, Double, Decimal... 등 변경 필요
 - 이중 배열의 경우 미리 repeating을 통해 요소를 채우는 것도 좋은 방법
     - 추가로, 배열의 경우 .indices롤 통해 sequence 호출 가능
+
+## Day4
+### 기억할 내용
+    - 배열 내 특정 요소 제거
+        - components(separatedBy:)
+            - ex) array.components(separatedBy: ["a", "e", "i", "o", "u"])
+        - filter & contains
+            - ex) array.filter { !["a", "e", "i", "o", "u"].contains($0)}
+    - 문자열 내 숫자 확인
+        - Int 형변환
+        - isNumber 메서드 사용
