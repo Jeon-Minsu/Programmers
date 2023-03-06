@@ -68,3 +68,41 @@
     - 문자열 내 숫자 확인
         - Int 형변환
         - isNumber 메서드 사용
+
+## Day5
+### 기억할 내용
+    - 직전의 값과 연관된 행동의 경우 Stack 적용한지 생각해보기
+        - array.popLast() 등을 통해 직전값 제거 가능
+    - 배열 내 최소값을 찾을때 min(by:) 사용하기
+        - 시퀀스의 최소값을 반환
+        - 시간 복잡도: O(n) {n = 시퀀스의 길이}
+    - 배수를 찾는 과정에서 % 을 이용할때 0(zero) 유념
+        - 0은 항상 나머지가 0 이므로 배수를 이용할 때 주의 
+        - contains를 이용하는 것도 방법
+    - 시퀀스 내 일정 간격 떨어진 요소를 호출할 때 
+        - stride(from:to:by) 활용 가능
+    - 문자열(String) 치환
+        - replacingOccurrences(of:with:)
+            - 음의 부호 치환시 "--" 의 경우, "+" 로 바꾸는 것 잊지 말기 
+    - **문자열(String)을 글자 하나하나로 나누기**
+        - ArraySlice(my_String)
+    - 배열 내 요소 인덱스 바꾸기
+        - array.swapAt(_:_:)
+    - Dictionary를 통한 element 카운팅
+        - reduce(into:_:) 사용
+        - ex) my_String.reduce(into: [:]) { dict, chr in
+                dict[chr, default: 0] += 1
+            }
+    - Array -> Dictionary 치환
+        - Dictionary(grouping:)
+    - 제곱, 제곱근 관련 함수
+        - 제곱 -> pow(_:_:)
+            - 파라미터로 Float, Decimal이 올 수 있음
+            - Decimal 사용시 값 추출 방법
+                - description
+                - Int(truncating: NSDecimalNumber(decimal: num))
+        - 제곱근 -> sqrt(_:)
+    - 제곱수 판별
+        - sqrt(Double(num)) == floor(sqrt(Double(num)))
+            - 제곱수라면 제곱근의 값이 소수점 이하가 없기 때문에 위의 식 가능
+}
