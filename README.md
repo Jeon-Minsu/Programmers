@@ -119,3 +119,16 @@
     - switch case 구문 내 조건 축약
         - where 절을 사용하여 조건 추가 가능
             - ex) case "up" where y < (board[1] / 2):
+
+## Day7
+### 기억할 내용
+    - 배열 내 최소값을 찾을때 min(by:) 꼭 활용하기
+    - 범위를 지정하고 일정 조건을 만족하는 배열 반환
+        - ex) (1..<maxEdge).filter { minEdge + $0 > maxEdge }
+            - 1부터 maxEdge 이하의 범위에서 (maxEdge - minEdge) 보다 큰 원소를 가지는 배열 반환
+    - 포함 여부 확인을 위해 String 활용 가능
+        - 특정 문자 포함 여부 확인을 위해 String, sorted(), contains, joined 활용해보기
+            - ex) (탐색범위 배열).map { String($0.sorted()) }.contains((탐색 요소).sorted().joined())
+    - 겹치는 선분의 길이는 꼭 다시 풀기
+    - core dump 문제시 배열의 범위가 잘 잡혀있는지 확인
+        - 일례로, 유한소수 찾기에서 범위를 그냥 약수 2로 잡다가 매개변수로 1이 들어올 수 있는 가능성 망각
