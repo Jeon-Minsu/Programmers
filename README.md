@@ -2,6 +2,9 @@
 프로그래머스 코딩테스트 연습 repo
 
 # Level 0
+## 수료 완료
+![코딩테스트 입문 캘린더](https://user-images.githubusercontent.com/99063327/224464391-ddfac0b6-5dbe-42ae-bea4-aa91167aa334.png)
+
 ## Day1
 ### 기억할 내용
 - stride(from:to:by:)
