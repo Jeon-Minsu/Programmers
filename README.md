@@ -153,3 +153,38 @@
     - 나누기의 경우, 분모가 0이 안되게 조심
     - 연속된 수의 합
         - 목표값을 원소의 갯수로 나눈후 -1, +1 하기
+
+# Level 1
+## Day1
+### 기억할 내용
+- 시간 복잡도를 최대한 줄이는 방식으로 생각하기
+    - 문제 ex) String(n).map { Int(String($0))! }.reduce(0, +)
+    - 개선 ex) String(n).reduce(0, { $0 + Int(String($1))! })
+        
+- 일정한 간격의 배열 생성 방법
+    - ex) Array(1...n).map { Int64($0 * spacing) }
+- 정수 제곱근 간단 판별 방법
+    - ex) n = 144 일 때,
+        let t = Int64(sqrt(Double(n)))
+        return t * t == n ? true : false
+    - 제곱근 함수 => sqrt
+    - 제곱 함수 => pow
+- Character 배열의 경우 String() 함수를 통해 간단히 변환 가능
+    - 문제 ex) Int64(String(n).sorted(by: >).map { String($0) }.joined())!
+    - 개선 ex) Int64(String(String(n).sorted(by: >)))!
+- 배열 내 원하는 요소의 인덱스 찾기
+    - firstIndex(of:) 메서드 사용
+- ** 배열 하위 시퀀스 반환 메서드
+    - func prefix(_ maxLength: Int) -> Self.SubSequence
+        - 배열의 앞에서부터 maxLength 만큼의 subSequence 반환
+    - func suffix(_ maxLength: Int) -> Self.SubSequence
+        - 배열의 뒤에서부터 maxLength 만큼의 subSequence 반환
+- 두 개의 시퀀스 합치기
+    - zip(_:_:)
+        - 각 쌍(pair)의 요소가 sequence1 및 sequence2의 해당 요소인 튜플(tuple) 시퀀스 반환
+- 시간복잡도가 복잡한 작업을 반복문과 같은 작업에 포함시키지 않기!
+    - 문제 ex)
+        var array = arr.filter { $0 != arr.min() }
+    - 개선 ex)
+        let minNumber = arr.min()
+        var array = arr.filter { $0 != minNumber }
