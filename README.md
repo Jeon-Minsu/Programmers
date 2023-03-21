@@ -188,3 +188,53 @@
     - 개선 ex)
         let minNumber = arr.min()
         var array = arr.filter { $0 != minNumber }
+
+
+## Day2
+### 기억할 내용
+- String 인덱싱에 Int 값을 사용하려면 String.Index(encodedOffset:) 사용
+    - string[0] 과 같이 사용시 에러 발생
+    - string[String.Index(encodedOffset: 0)]로 사용하기!
+    - 주의) string.endIndex은 마지막 문자가 아니라 진짜 아무것도 없는 맨 끝, C언어로 따지면 문자열 마지막인 \0의 위치를 반환
+        - 따라서, 아래의 4가지 메서드롤 통해 해결해보기
+        - func index(String.Index, offsetBy: Int) -> String.Index
+        - func index(after i: String.Index) -> String.Index
+        - func index(before i: String.Index) -> String.Index
+        - func index(of element: Self.Element) -> Self.Index?
+- 두 개의 시퀀스를 곱한값을 요소로 삼는 시퀀스 만들기
+    - zip(a, b).map(*)
+- 수학적 지식 더욱 꼼꼼하게 숙지하기
+    - ex) 최소공배수 & 최대공약수
+        - 최대공약수를 구했다면 최소 공배수는 각 값을 최대공약수로 나눈 값을 곱함과 같으니 쉽게 답을 구할 수 있었음
+        ```
+        let a = (1...n).filter { n % $0 == 0 }
+        let b = (1...m).filter { m % $0 == 0 }
+        let gcd = b.filter { a.contains($0) }.last!
+        let lcm = n * m / gcd
+        return [gcd, lcm]
+        ```
+- 정해진 예산에서 차례차례 빼는 방식일 때 좋은 코드
+    ```
+    var budget = budget
+    return d.sorted().filter{
+        budget = budget - $0
+        return budget >= 0
+    }.count
+    ```
+- 문자열 <-> 유니코드 변환
+    - 문자열 -> 유니코드
+        - string.utf8.map { $0 }
+    - 유니코드 -> 문자열
+        - String(UnicodeScalar(string)!)
+- '5개->4개->3개...'와 같이 반복문을 하나씩 줄이며 중첩할 때,
+    ```
+    for i in 0..<numbers.count {
+        for j in (i + 1)..<numbers.count {
+            for k in (j + 1)..<numbers.count {
+                ...
+            }
+        }
+    }
+        
+    ```
+
