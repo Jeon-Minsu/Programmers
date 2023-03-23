@@ -238,3 +238,55 @@
         
     ```
 
+## Day3
+### 기억할 내용
+- or 연산자 => `|`
+    - ex) String(arr1[$0] | arr2[$0], radix: 2)
+- String 간단한 인덱싱
+    - String.Index(utf16Offset:in:)이 아닌 Array(string)[0]과 같이 간단한 인덱싱 방법도 존재
+- 특정 문자 대체 메서드 => `replacingOccurrences(of:with:)`
+- Set 또한 sorted() 메서드 존재
+    - Array로 형변환을 불필요하게 할 필요 없음
+- 문자열의 일부 문자를 자르고 싶을때, prefix 고려하기
+    - 문제 ex) t[..<t.index(t.startIndex, offsetBy: p.count)]
+    - 개선 ex) t.prefix(p.count)
+- **나머지를 이용하는 문제**
+    - 이번 경우 콜라문제와 같이, 중첩적으로 나누어지는 값에 대하여 다음과 같이 풀이해보기
+        - 나누는 값에 나머지를 자꾸 더하자!
+        - 예시
+            ```
+            var result = n
+            var service = 0
+
+            while result / a > 0 {
+                service += (result / a) * b
+                result = (result / a) * b + result % a
+            }
+
+            return service
+            ```
+- 같은 값에 대하여 최신값으로 업데이트가 필요할 때 Dictionary 고려해보기
+    - ex) 문제(가장 가까운 같은 글자) 참고
+- **시간 복잡도 최소화 문제**
+    - 문제(소수 찾기)에서 이미 소수가 아닌 숫자는 다시 한 번 확인할 필요 X
+    - 따라서, Array<Bool>을 만들어 해당 Bool 값을 false로 설정해주고
+    - 이후에 조건문을 통해 Bool 값이 false 일시 빠르게 통과되도록!
+    - 추가로, 배수의 경우 반복은 해당 배수로 나눈만큼만 하면 됨
+    - 즉, 1부터 1000까지 2의 배수를 찾는 경우, 총 반복횟수는 1000/2 번만 하면 됨
+    - 예시
+        ```
+        var primes:[Bool] = [Bool](repeating: true, count: n + 1)
+        var count = 0
+
+        for i in 2...n {
+            if primes[i] {
+                count = count + 1
+            }
+
+            for j in 1...(n/i) {
+                primes[i * j] = false
+            }
+        }
+
+        return count
+        ```
