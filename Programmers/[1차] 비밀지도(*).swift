@@ -24,20 +24,20 @@
 // MARK: - 문제 해결
 
 func decipherSecretMap(_ n:Int, _ arr1:[Int], _ arr2:[Int]) -> [String] {
-    let array1 = arr1.map {
-        let text = String($0, radix: 2)
+    let array1 = arr1.map { element -> String in
+        let text = String(element, radix: 2)
 
         return text.count < n ? String(repeating: "0", count: n - text.count) + text : text
     }
 
-    let array2 = arr2.map {
-        let text = String($0, radix: 2)
+    let array2 = arr2.map { element -> String in
+        let text = String(element, radix: 2)
 
         return text.count < n ? String(repeating: "0", count: n - text.count) + text : text
     }
 
-    let answerArray = zip(array1, array2).map {
-        let final = zip($0.0.map { $0 }, $0.1.map { $0 })
+    let answerArray = zip(array1, array2).map { tuple -> String in
+        let final = zip(tuple.0.map { $0 }, tuple.1.map { $0 })
         var text = ""
         for element in final {
             if element.0 == "0" && element.1 == "0" {
@@ -56,3 +56,11 @@ func decipherSecretMap(_ n:Int, _ arr1:[Int], _ arr2:[Int]) -> [String] {
 
 // MARK: - 본인이 생각하는 모범 답안
 
+func solution(_ n:Int, _ arr1:[Int], _ arr2:[Int]) -> [String] {
+
+    return (0..<n).map {
+        let binary = String(arr1[$0] | arr2[$0], radix: 2)
+        let padded = String(repeating: "0", count: n - binary.count) + binary
+        return padded.reduce("") { $0 + ($1 == "0" ? " " : "#") }
+    }
+}
