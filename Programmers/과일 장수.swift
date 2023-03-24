@@ -47,7 +47,7 @@ import Foundation
 
 func solution(_ k:Int, _ m:Int, _ score:[Int]) -> Int {
     var answer = 0
-    var score = score.sorted(by: >)
+    let score = score.sorted(by: >)
     var start = m - 1
 
     while start < score.count {
