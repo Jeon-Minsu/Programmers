@@ -43,18 +43,15 @@ func countPrimeNumberfromOneTo(_ n:Int) -> Int {
 // MARK: - 본인이 생각하는 모범 답안
 
 func solution10(_ n:Int) -> Int {
-    var primes:[Bool] = [Bool](repeating: true, count: n + 1)
+    var primes: [Bool] = [Bool](repeating: false, count:n + 1)
     var count = 0
-
     for i in 2...n {
-        if primes[i] {
+        if (!primes[i]) {
             count = count + 1
         }
-
         for j in 1...(n/i) {
-            primes[i * j] = false
+            primes[i * j] = true
         }
     }
-
-    return count
+    return count;
 }
