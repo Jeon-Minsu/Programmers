@@ -296,3 +296,33 @@
 - zip을 사용한 경우, sequence의 길이가 다르면 가장 짧은 sequence를 기준으로 조정
 - 소수(PrimeNumber)의 시간 복잡도를 줄이는 방법 연습하기
 - 논리 오류가 있을때, 문제의 제한사항을 꼼꼼히 살펴보기
+
+## Day5
+### 기억할 내용
+- 클로저를 통해 특정 배열을 분리하고 싶으면 split(whereSeparator:) 사용하기
+    - ex) 숫자와 문자가 혼합한 배열 분리
+        ```
+        let numberList = dartResult.split(whereSeparator: { $0.isLetter || $0 == "#" || $0 == "*" })
+        let letterList = dartResult.split(whereSeparator: { $0.isNumber })
+        ```
+- 해당 문자가 문자인지 Bool 값을 반환하는 함수 => isLetter
+- 일정 숫자 밑으로 일관된 결과값을 return 하고 싶다면 min()을 활용하는 것도 방법
+    - ex) 6개의 로또 번호에서 1개 이하로 맞추면 6등을 반환
+        ```
+        min(7 - winCount, 6)
+        ```
+- 약수의 개수 시간 복잡도를 고려하여 작성할 때, 미리 배열을 만들어놓기
+    - 예시
+        ```
+        var countArray = Array(repeating: 0, count: number + 1)
+
+        for i in 1...(countArray.count - 1) {
+            for j in 1...((countArray.count - 1) / i) {
+                countArray[i * j] += 1
+            }
+        }
+
+        return countArray.map {
+            $0 > limit ? power : $0
+        }.reduce(0, +)
+        ```
