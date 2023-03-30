@@ -326,3 +326,192 @@
             $0 > limit ? power : $0
         }.reduce(0, +)
         ```
+
+## Day6
+### 기억할 내용
+- Sequence별 시간복잡도 정리
+    - Array
+        ```
+        - append(_ newElement: Element)
+            - 평균 시간 복잡도 => O(1)
+            - 최악의 시간복잡도 => O(N)
+                - 최악의 상황 => 메모리를 재할당 해야 할 때
+
+        - append(contentsOf:)
+            - 평균 시간 복잡도 => O(M)
+            - M은 contentsOf 자리에 오는 새로운 Elements의 개수
+
+        - insert(_ newElement: Element, at i: Int)
+            - O(N)
+            - i가 마지막 index일 경우, append와 시간 복잡도 동일
+        
+        - count
+            - O(1)
+
+        - subscript(_:)
+            - read는 항상 O(1)
+            - write는 일반적으로 O(1)
+                - NSArrary와 brideged 됐을 경우나 다른 arrary와 storage를 공유하고 있을 경우는 O(N) (Copy on Write)
+            
+        - randomElement()
+            - O(1)
+
+        - reserveCapacity(_:)
+            - O(N)
+
+        - last
+            - O(1)
+
+        - isEmpty
+            - O(1)
+        
+        - popLast(), removeLast()
+            - O(1)
+
+        - remove(at:)
+            - O(N) 
+
+        - removeFirst()
+            - O(N)
+            
+        - removeAll(keepingCapacity:)
+            - O(N)
+
+        - contains(_:), contains(where:)
+            - O(N)
+            - Set 구조로도 구현 가능하다면, Set로 형변환후 contains() 사용시 시간복잡도 O(1)로 단축 가능
+
+        - allSatisfy(_:)
+            - O(N)
+
+        - first(where:), firstIndex(where:), last(where:), lastIndex(where:), firstIndex(of:), lastIndex(of:)
+            - O(N)
+
+        - min(), max()
+            - O(N)
+
+        - enumerated()
+            - O(N)
+
+        - sort(), sorted()
+            - O(N logN)
+            - Swift에선 MergeSort와 InsertionSort를 기반으로 만든 Timsort를 사용
+        
+        - reverse()
+            - O(n)
+
+        - rereversed()
+            - O(1)
+            - revese()와 시간복잡도가 상이
+            - ReversedCollection을 반환하기 때문
+            - ReversedCollection는 참조 순서를 역순으로 하게 만듦
+
+        - shuffle(), shuffled()
+            - O(N)
+
+        - partition(by:)
+            - O(N)
+
+        - swapAt(_:_:)
+            - O(1)
+
+        - split(separator:maxSplits:omittingEmptySubsequences:), split(maxSplits:omittingEmptySubsequences:whereSeparator:)
+            - O(N)
+
+        - elementsEqual(_:), ==
+            - O(M)
+            - M => 두 sequence length중에 더 작은 length
+        ```
+        
+    - Set
+        ```
+        - subscript(_:)
+            - O(1)
+
+        - count
+            - O(1)
+
+        - contains(_:)
+            - O(1)
+
+        - contains(where:)
+            - O(N)
+
+        - removeFirst()
+            - 평균 O(1)
+            - bridged NSSet으로 Wrap되지 않은 경우, 명시 X
+
+        - firstIndex(of:)
+            - O(1)
+        ```
+        
+    - Dictionary
+        ```
+        - subscript(_:)
+            - O(1)
+
+        - count
+            - O(1)
+
+        - contains(where:)
+            - O(N)
+            - contains(_:) method 존재 X
+                - key로 바로 참조하면 알 수 있기 때문
+
+        - index(forKey:)
+            - 평균 O(1)
+            - bridged NSDictionary으로 Wrap된 경우 O(N)
+
+        - mapValues(_:)
+            - O(N)
+
+        - compactMapValues(_:)
+            - O(M + N)
+            - N은 기존 Dictionary의 크기
+            - M은 결과 Dictionary의 크기
+
+        - remove(at:), removeValue(forKey:), removeAll(keepingCapacity:)
+            - O(N)입니다.
+
+        - popFirst()
+            - 평균 O(1)
+
+        - rereversed()
+            - O(N)
+        ```
+        
+    - String
+        ```
+        - count
+            - O(N)
+            - count가 0인지만 궁금하다면 isEmpty를 사용하여 시간복잡도 O(1)로 단축
+        ```
+        
+    - ClosedRange
+        ```
+        - contains(_:) , ~=
+            - O(1)
+        ```
+        
+    - Higher-order functions(고차함수)
+        ```
+        - map, flatMap, compactMap, filter, reduce
+            - O(n)
+        ```
+    - 출처(https://demian-develop.tistory.com/30)
+- 정수 범위를 넘어나는 경우를 유념하기
+    - 코드가 아무리 잘 짜여있어도 정수 범위를 넘어가는 경우 해당 숫자가 잘리게 됨
+- replacingOccurrences(of:with:) 사용시, 교체로 인하여 새로운 단어가 생성됨을 유의
+    - 예시) myea -> 'ye'지움 문제
+        ```
+        let possibleWord = ["aya", "ye", "woo", "ma"]
+        var problemWord = "myea"
+        
+        problemWord = problemWord.replacingOccurrences(of: "ye", with: "")
+        print(problemWord) // problemWord == "ma"
+        
+        problemWord = problemWord.replacingOccurrences(of: "ma", with: "")
+        print(problemWord) // problemWord == "" 
+        
+        // 이와 같이, 원래라면 만들어지지 않을 문자가 만들어질 수 있으니 주의!!
+        ```
