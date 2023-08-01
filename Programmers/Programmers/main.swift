@@ -170,4 +170,4 @@ import Foundation
 //print(makeNumberPairs("100", "2345"))
 //print(babble2(["ayaye", "uuu", "yeye", "yemawoo", "ayaayaa", "aya", "ye", "woo", "ma", "woowo"]))
 //print(pressKeypad([1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5], "right"))
-print(playClawMachineGame([[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]], [1,5,3,5,1,2,1,4]))
+//print(playClawMachineGame([[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]], [1,5,3,5,1,2,1,4]))
