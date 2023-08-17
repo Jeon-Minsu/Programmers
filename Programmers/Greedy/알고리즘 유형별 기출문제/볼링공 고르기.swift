@@ -18,7 +18,7 @@ func pickABowlingBall() -> Int {
     var balls = readLine()!.components(separatedBy: " ").map { Int($0)! }.sorted(by: >)
     var answer = 0
 
-    while balls.last != condition {
+    while balls.last != condition, !balls.isEmpty {
         let number = balls.removeLast()
         var count = 1
  
@@ -28,7 +28,6 @@ func pickABowlingBall() -> Int {
         }
 
         answer += count * balls.count
-
     }
 
     return answer
