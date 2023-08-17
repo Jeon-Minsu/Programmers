@@ -41,42 +41,95 @@
 import Foundation
 
 func startFoodLiveOfMuzi(_ food_times: [Int], _ k: Int64) -> Int {
+    // 주어진 전체 시간
     var totalTime = Int(k)
+
+    // 주어진 음식 배열(food_times)을 (인덱스, 필요섭취시간) 튜플 형식으로 map
     var array = food_times.enumerated().map { ($0.offset + 1, $0.element) }
+
+    // 총 섭취 비용이 동일한 경우를 판단하기 위하여 dictionary 활용하기로 결정
+    // array -> dictionary 변환 작업
     var dict: [Int: Int] = [:]
     array.forEach { index, number in
+        // 총 섭취 비용을 key 값으로 활용
+        // 총 섭취 비용이 동일한 값이 있다면 해당 key의 value에 1을 더함
+        // 그렇지 아니할 경우 신규 등록이니 value를 1로 초기화
         if let existingValue = dict[number] {
             dict[number] = existingValue + 1
         } else {
             dict[number] = 1
         }
     }
+
+    // 총 섭취 비용이 작은 순으로 dictionary를 오름차순 정렬이 이루어진 배열로 초기화
     let sortedDictionary = dict.sorted(by: <)
 
+    // 모든 요소가 한번 도는 횟수를 round로 가정
+    // 직전 라운드를 의미하는 previousRound
     var previousRound = 0
+    // 현재 라운드를 의미하는 currentRound
     var currentRound = 0
+    // 직전 라운드를 통해 소진된 배열 요소 개수를 의미하는 lastCount
     var lastCount = 0
 
+    // sortedDictionary의 크기만큼 반복문 실행
     for index in sortedDictionary.indices {
+        // currentRound를 sortedDictionary[index].key로 초기화
+        // 이렇게 초기화를 하면 각 index에 해당하는 총 섭취 비용을 불필요하게 반복문을 돌지 않고 생략 가능
+        // 예시로 sortedDicionary[0].key = 4인 경우,
+        // 원래대로라면 해당 음식(sortedDicionary[0])을 모두 섭취하기까지 전체 배열을 4번 돌아야 하지만
+        // 4번 돌았다 가정하고 모든 음식에 4의 시간을 빼주면 동일한 효과를 더욱 유리하게 점할 수 있음
         currentRound = sortedDictionary[index].key
+        // diff는 현재 라운드와 직전 라운드의 차(difference)로 얼마만큼 round를 돌았는지를 판단하는 척도
         let diff = currentRound - previousRound
 
+        // 이번 반복을 통해 돈 diff만큼의 round에서
+        // array.count는 전체 배열의 길이, 즉 round의 길이에 해당
+        // lastCount는 직전 라운드를 통해 소진된 배열 요소의 개수
+        // 따라서 (array.count - lastCount)는 이번 라운드에 존재하는 배열 요소의 개수를 의미
+        // totalTime은 주어진 남은 시간이기에
+        // (diff * (array.count - lastCount))가 totalTime보다 작다면
+        // 해당 라운드를 온전히 돌 수 있는 것이니 if문의 true case로 넘어가기
         if diff * (array.count - lastCount) <= totalTime {
+            // 주어진 전체 시간(totalTime)에서
+            // 현재 라운드에서 소진된 섭취 시간(diff * (array.count - lastCount))을 뺌
             totalTime -= diff * (array.count - lastCount)
+            // currentRound에 대한 처리를 완료했으니,
+            // previousRound를 currentRound로 업데이트
             previousRound = currentRound
+            // 현재 소진된 배열 요소의 갯수(sortedDictionary[index].value)를 lastCount에 더함
             lastCount += sortedDictionary[index].value
         } else {
+            // else 케이스에 빠졌다는 것은
+            // 이번에 라운드를 온전히 돌기에는 주어진 시간이 부족함을 의미
+            // 즉, 더이상 round 단위로 한번에 뺄 수 없고
+            // 남은 시간만큼 직접 인덱스에 접근해야함
             break
         }
     }
 
+    // 나머지 주어진 시간을 소비하기 위하여
+    // 일단 배열을 섭취한 음식이 있는 요소를 모두 제거한 배열로 업데이트
+    // previousRound는 결국 한 음식에 몇 초를 할애했는가이니
+    // 각 요소에 최종 previousRound를 뺀 값이 0보다 큰
+    // 즉, 더 섭취할 수 있는 음식만 남도록 배열을 최신화
+    // 주의점은 sortedDictionary랑 array는 다름
+    // array는 index와 섭취 비용을 튜플로 정리한 배열이고
+    // sortedDictionary는 전체 라운드를 효과적으로 제거하기 위해
+    // 섭취 비용별로 dictionary 타입으로 재정렬했던 배열이었음
     array = array.filter({
         $0.1 - previousRound > 0
     })
 
+    // 만약 배열이 비었다면
     if array.isEmpty {
         return -1
     } else {
+        // 이제 남은 시간(totalTime)을 배열의 나머지 요소 내에서 인덱싱을 돌려야함
+        // 나머지 요소에서 얼마나 돌든 결국 마지막 멈추는 지점이 중요하니
+        // totalTime % array.count로 나머지 값을 추출
+        // 배열의 해당 인덱스에 접근한 다음, (index, 섭취비용) 튜플 형태이니
+        // 우리가 필요한 인덱스를 추출하기 위해 .0을 return
         return array[totalTime % array.count].0
     }
 }
