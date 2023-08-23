@@ -181,4 +181,6 @@ import Foundation
 //print(turnString())
 //print(findTheSmallestUnconstructableValue())
 //print(pickABowlingBall())
-print(startFoodLiveOfMuzi([3, 1, 2], 5))
+//print(startFoodLiveOfMuzi([3, 1, 2], 5))
+//numberOfMeetingRoom()
+calculateMinimumCostOfDairyProducts()
