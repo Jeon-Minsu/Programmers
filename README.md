@@ -540,6 +540,27 @@
     - 시간복잡도가 매우 중요한 문제였음
     - 이를 위해, 생략할 수 있는 부분은 대체로 생략하는 것이 좋은 접근이었음
         - 순차적 접근이 아닌, 공통적인 최소 시간을 빼가는 방식으로 접근
+        
+## 알고리즘 유형별 기출문제
+### 기억할 내용
 - 시간 복잡도를 항상 생각하기
     - 시간 복잡도를 줄이기 위해 역순 정렬, 혹은 reversed() 사용 후 removeLast(), last 활용해보기
     - enumerated()의 시간복잡는 O(1)
+
+# Implementation
+## 주요 알고리즘 이론과 실전 문제
+### 기억할 내용
+- 실무의 코딩과 코딩 테스트의 차이 이해하기
+    - 실무 코딩의 경우, 문제의 제한사항에 기재되지 않은 index out of range 같은 예외 사항일지라도 포괄하여 다루어야 함
+    - 그러나, 코딩 테스트의 경우, 입력값이 주어지는 경우가 대부분
+    - 따라서, 예외처리를 고려하기 보다는, 빠르게 코드 작성을 목표로!
+- `알파벳 => 숫자` 변환 방법
+    - 방법1: Dictionary를 활용
+    - 방법2: UnicodeScalar 사용
+        - unicodeScalar를 기준으로
+ 목표 알파벳까지의 거리를 인덱스로 활용
+        - 예시
+            - 표현방식1: "a".unicodeScalars.first!.value // 97
+            - 표현방식2: UnicodeScalar("a").value // 97
+            - 목표값: "e".unicodeScalars.first!.value // 101
+            - 인덱스값으로 활용: "e".unicodeScalars.first!.value - "a".unicodeScalars.first!.value // 4
