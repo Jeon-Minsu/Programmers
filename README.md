@@ -564,3 +564,45 @@
             - 표현방식2: UnicodeScalar("a").value // 97
             - 목표값: "e".unicodeScalars.first!.value // 101
             - 인덱스값으로 활용: "e".unicodeScalars.first!.value - "a".unicodeScalars.first!.value // 4
+
+## 알고리즘 유형별 기출문제
+### 기억할 내용
+- 띄어쓰기 없는 하나의 문자열, 배열로 return
+    - 입력값 예시: "123402"
+    - 해결방안1: readLine()!.split(separator: "").map { Int($0)! }
+        - Xcode 환경에서는 잘 작동되나, 백준에서는 X
+    - 해결방안2: Array(readLine()!).map { Int(String($0))! }
+        - 입력 문자열을 배열로 먼저 변환후 mapping 
+- 문자열과 숫자가 섞인 문자열 분류
+    - isNumber, isLetter 메서드도 고민해보기!
+- dropLast()는 시간복잡도 O(1)로, 마지막 요소를 제거한 나머지 배열 전체를 반환
+- 특정 값을 이용하여 배열 내 요소를 제거하는 방법
+    - 예시)
+        ```
+        let currentStuff = [3, 5, 1]
+        let index = array.firstIndex(of: currentStuff)!
+        array.remove(at: index)
+        ```
+- [[Int]]와 같은 이중배열에서, 첫번째 값을 x, 두번째 값을 y라고 했을때, x 좌표 기준으로 오름차순 정렬하며, x 좌표가 같을 경우 y 좌표 기준으로 오름차순 정렬 시 다음과 같이 코드 작성 
+    - 예시) x, y 값 기준으로 위와 같이 정렬하는 경우
+        ```
+        array.sorted {
+            if $0[0] != $1[0] {
+                return $0[0] < $1[0]
+            } else {
+                return $0[1] < $1[1]
+            }
+        }
+        ```
+    - 예시) x, y, z 값 기준으로 위와 같이 정렬하는 더 복잡한 경우
+        ```
+        answer.sorted {
+            if $0[0] != $1[0] {
+                return $0[0] < $1[0]
+            } else if $0[1] != $1[1] {
+                return $0[1] < $1[1]
+            } else {
+                return $0[2] < $1[2]
+            }
+        }
+        ```
