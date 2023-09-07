@@ -137,15 +137,17 @@ func installStructure(_ n: Int, _ build_frame: [[Int]]) -> [[Int]] {
     // x 좌표가 같을 경우 y 좌표 기준으로 오름차순 정렬
     // x, y 좌표가 모두 같은 경우 기둥이 보보다 앞에 오도록 정렬
     // 해당 sorted 분기를 꼭 기억하여 다음에도 써먹자!
-    return answer.sorted {
-        if $0[0] != $1[0] {
-            return $0[0] < $1[0]
-        } else if $0[1] != $1[1] {
-            return $0[1] < $1[1]
-        } else {
-            return $0[2] < $1[2]
-        }
-    }
+    // 튜플로 하면 앞에서 부터 비교함!
+    return answer.sorted { ($0[0], $0[1], $0[2]) < ($1[0], $1[1], $1[2]) }
+//    return answer.sorted {
+//        if $0[0] != $1[0] {
+//            return $0[0] < $1[0]₩
+//        } else if $0[1] != $1[1] {
+//            return $0[1] < $1[1]
+//        } else {
+//            return $0[2] < $1[2]
+//        }
+//    }
 }
 
 // 입력받은 건축물을 모두 건축할 수 있는지 판단하는 함수
