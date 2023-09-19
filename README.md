@@ -617,3 +617,56 @@
         let extendedWeakPoints = weak + weak.map { $0 + n }
         ```
 - 원형 구조에서 연속한 최소 배열로 나누기 위해, 가장 큰 수로 나누는 것보다, 완전탐색으로 돌리는 것이 확실
+- 배열의 시작 인덱스는 0부터 시작하는데, 배열의 마지막 인덱스는 count와 동일... 신기하네
+    - 예시)
+        ```
+        print([1,2,3,4,5].startIndex) // 0
+        print([1,2,3,4,5].endIndex) // 5
+        ```
+- 문자열을 원하는 수만큼 자르고 싶을때
+    - 예시)
+        ```
+        func split(_ s: String, by unit: Int) -> [String] {
+            var result: [String] = []
+
+            for i in stride(from: 0, to: s.count, by: unit) {
+                let startIndex = s.index(s.startIndex, offsetBy: i)
+                let endIndex = s.index(startIndex, offsetBy: unit, limitedBy: s.endIndex) ?? s.endIndex
+                let chunk = s[startIndex..<endIndex]
+                result.append(String(chunk))
+            }
+
+            return result
+        }
+        ```
+- 2차원 배열에서, 또 다른 작은 사이즈의 2차원 배열로 기존 배열의 범위를 벗어나는 범위를 쉽게 포괄하려면, 기존 2차원 배열을 3배로 만들어주면 편함
+    - 예시) 
+    ```
+    private func isMatch(_ lock: [[Int]], _ key: [[Int]], _ x: Int, _ y: Int) -> Bool {
+        let lockSize = lock.count
+        let keySize = key.count
+        var extendedLock = Array(repeating: Array(repeating: 0, count: lockSize * 3), count: lockSize * 3)
+
+        for i in 0..<lockSize {
+            for j in 0..<lockSize {
+                extendedLock[i + lockSize][j + lockSize] = lock[i][j]
+            }
+        }
+
+        for i in 0..<keySize {
+            for j in 0..<keySize {
+                extendedLock[x + i + lockSize][y + j + lockSize] += key[i][j]
+            }
+        }
+
+        for i in lockSize..<(lockSize * 2) {
+            for j in lockSize..<(lockSize * 2) {
+                if extendedLock[i][j] != 1 {
+                    return false
+                }
+            }
+        }
+
+        return true
+    }
+    ```
