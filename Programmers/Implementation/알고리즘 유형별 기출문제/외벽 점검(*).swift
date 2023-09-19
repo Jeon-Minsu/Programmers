@@ -145,3 +145,10 @@ private func generatePermutations(_ elements: [Int]) -> [[Int]] {
     // 가능한 모든 경우의 수를 포괄한 순열 반환
     return entirePermutations
 }
+
+
+// MARK: - 본인이 생각하는 모범 답안
+
+// dist의 경우 5개일 경우, 5개인 상태에서 완전탐색 하는게 아니라
+// 1개, 2개, 3개.... 이렇게 늘려나가는 식으로 하는게
+// 시간복잡도 면에서 매우 유리
