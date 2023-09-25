@@ -670,3 +670,42 @@
         return true
     }
     ```
+
+# DFS&BFS
+## 주요 알고리즘 이론과 실전 문제
+### 기억할 내용
+- DFS 기본 구현
+    - 예시)
+    ```
+    func dfs(_ graph: [[Int]], _ v: Int, _ visited: inout [Bool]) {
+        visited[v] = true
+        print(v, terminator: " ")
+
+        for i in graph[v] {
+            if !visited[i] {
+                dfs(graph, i, &visited)
+            }
+        }
+    }
+    ```
+- BFS 기본 구현
+    - 예시)
+    ```
+    func bfs(_ graph: [[Int]], _ start: Int, _ visited: inout [Bool]) {
+        var queue: [Int] = []
+        queue.append(start)
+        visited[start] = true
+
+        while !queue.isEmpty {
+            let v = queue.removeFirst()
+            print(v, terminator: " ")
+
+            for i in graph[v] {
+                if !visited[i] {
+                    queue.append(i)
+                    visited[i] = true
+                }
+            }
+        }
+    }
+    ```
