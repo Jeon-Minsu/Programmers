@@ -200,4 +200,7 @@ import Foundation
 //dfs(graph, 1, &visited)
 //bfs(graph2, 1, &visited2)
 //freezeDrinks()
-escapeMaze()
+//escapeMaze()
+//descendingOrder()
+//sortStudentsByScoreAscending()
+swapArrays()
