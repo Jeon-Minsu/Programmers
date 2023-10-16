@@ -709,3 +709,187 @@
         }
     }
     ```
+
+# Sort
+## 주요 알고리즘 이론과 실전 문제
+### 기억할 내용
+- 선택 정렬
+    - 가장 작은 데이터를 선택해 맨 앞에 있는 데이터와 바꾸고, 그다음 작은 데이터를 선택해 앞에서 두 번째 데이터와 바꾸는 과정을 반복
+    - 다른 정렬 알고리즘에 비해 매우 비효율적
+    - 다만, 특정한 리스트에서 가장 작은 데이터를 찾는 일이 코딩 테스트에서 잦으므로 숙지 필요
+    - 시간복잡도: O(N^2)
+    - 기본 구현
+        ```
+        func selectionSort(_ array: inout [Int]) {
+            // array의 전체에 이르기까지 loop
+            for i in 0..<array.count {
+                // 가장 작은값이 있는 인덱스
+                var minIndex = i
+
+                // 가장 작은 값을 앞으로 보내는 과정이니
+                // 정렬된 값들 이후부터 가장 작은값을 찾아내기 위해 loop
+                for j in (i + 1)..<array.count {
+                    if array[minIndex] > array[j] {
+                        minIndex = j
+                    }
+                }
+
+                // 현재 인덱스와 가장 작은값이 있는 인덱스 swap
+                array.swapAt(i, minIndex)
+            }
+        }
+        ```
+- 삽입 정렬
+    - 데이터를 하나씩 확인하여 각 데이터를 적절한 위치에 삽입 정렬
+    - 선택 정렬에 비해 효율적
+    - 특정한 데이터가 적절한 위치에 들어가기 이전에, 그 앞까지의 데이터는 이미 정렬되어 있다고 가정
+    - 삽입 정렬은 현재 리스트의 데이터가 거의 정렬되어 있는 상태라면 매우 빠르게 동작
+    - 시간복잡도: O(N^2)
+    - 최선의 경우 O(N)의 시간 복잡도
+    - 기본구현
+        ```
+        func insertionSort(_ array: inout [Int]) {
+            for i in 1..<array.count {
+                let current = array[i]
+                var j = i - 1
+
+                while j >= 0 && array[j] > current {
+                    array[j + 1] = array[j]
+                    j -= 1
+                }
+
+                array[j + 1] = current
+            }
+        }
+        
+        // 출처: https://babbab2.tistory.com/101
+        func insertionSort2(_ array: inout [Int]) {
+            for stand in 1..<array.count {
+                for index in stride(from: stand, to: 0, by: -1) {
+                    if array[index] < array[index - 1] {
+                        array.swapAt(index, index - 1)
+                    } else {
+                        break
+                    }
+                }
+            }
+        }
+        ```
+
+- 퀵 정렬
+    - 기준(pivot)을 설정하고 그 기준보다 큰 수와 작은 수를 교환한 후, 리스트를 반으로 나누는 방식으로 동작
+    - 데이터 무작위 입력시 퀵 정렬은 빠르게 동작할 확률이 높으나
+    - 이미 데이터가 정렬되어 있는 경우에는 매우 느리게 동작
+    - 삽입정렬과 반대
+    - 평균 시간 복잡도 O(NlogN)으로 빠른편
+    - 최악의 경우는 시간복잡도 O(N^2)
+    - 기본 구현
+        ```
+        // array: 배열, start: 시작 인덱스, end: 종료 인덱스
+        func quickSort(_ array: inout [Int], start: Int, end: Int) {
+            // 시작 인덱스가 종료 인덱스보다 크거나 같다면,
+            // 배열의 크기가 1 이하이므로 아무 작업을 하지 않고 함수를 반환
+            // 재귀적으로 사용될 quickSort를 끝내기 위한 종료 구문
+            if start >= end {
+                return
+            }
+
+            // pivot은 기준점
+            // left는 왼쪽에서부터 피벗의 오른쪽 방향으로 탐색하기 위한 인덱스
+            // right는 오른쪽에서부터 피벗의 왼쪽 방향으로 탐색하기 위한 인덱스
+            let pivot = start
+            var left = start + 1
+            var right = end
+
+            // left와 right가 서로 교차할대까지 실행
+            // 피벗을 기준으로 왼쪽에는 작은 값, 오른쪽에는 큰 값을 정렬하기 위한 루프
+            while left <= right {
+                // left가 end 인덱스를 초과하지 않는 선까지
+                // pivot보다 큰 값이 나오지 않으면
+                // left를 1씩 증가시킴
+                while left <= end && array[left] <= array[pivot] {
+                    left += 1
+                }
+                // right가 start 인덱스보다 작아지지 않는 선까지
+                // pivot보다 작은 값이 나오지 않으면
+                // right를 1씩 감소시킴
+                while right > start && array[right] >= array[pivot] {
+                    right -= 1
+                }
+
+                // left가 right보다 크면
+                // 서로 엇갈리게 지날 때이니
+                // 교차 검사가 끝날 때로
+                // 작은 값인 right와 pivot의 위치를 swap
+                // 이때 pivot은 본인이 있어야 할 위치에 들어가게 됨
+
+                // else의 경우는
+                // 정상적인 pivot 기준 교환하는 시기이므로
+                // swap
+                if left > right {
+                    array.swapAt(right, pivot)
+                } else {
+                    array.swapAt(left, right)
+                }
+            }
+
+            // right는 pivot이었던 값이 정상적으로 들어간 위치이므로
+            // 이를 기준으로 좌우로 퀵 정렬 재귀 호출
+            quickSort(&array, start: start, end: right - 1)
+            quickSort(&array, start: right + 1, end: end)
+        }
+        
+        // 출처: https://babbab2.tistory.com/101
+        func quickSort2(_ array: [Int]) -> [Int] {
+            guard let first = array.first, array.count > 1 else { return array }
+
+            let pivot = first
+            let left = array.filter { $0 < pivot }
+            let right = array.filter { $0 > pivot }
+
+            return quickSort2(left) + [pivot] + quickSort2(right)
+        }
+        ```
+
+- 계수 정렬
+    - 계수는 count를 의미
+    - 즉, 모든 범위를 담을 수 있는 크기의 리스트를 선언하여 각각 알맞은 범위에 해당 값을 count하여 정렬
+    - 특정한 조건이 부합할 때만 사용할 수 있지만 매우 빠른 정렬 알고리즘
+        - 특정한 조건: 데이터의 크기 범위가 제한 되어 정수 형태로 표현할 수 있을 때
+        - 음의 정수, 부동 소수점 값은 인덱싱, 배열 크기, 데이터 순서 측면에서 부적합
+    - 모든 데이터가 양의 정수인 상황에서 데이터의 개수를 N, 데이터 중 최대값의 크기를 K라고 할 때, 계수 정렬의 시간 복잡도는 O(N + K)
+        - 앞에서부터 데이터를 하 나씩 확인하면서 리스트에서 적절한 인덱스의 값을 1씩 증가 -> O(N)
+        - 추후에 리스트의 각 인덱스에 해당하는 값들을 확인할 때 데이터 중 최댓값의 크기만큼 반복을 수행 -> O(K)
+    - 공간 복잡도는 때때로 비효율성 초래, 동일한 값을 가지는 데이터가 여러 개 등장할 대 효율적
+        - 반례: 데이터가 0과 999,999, 단 2개만 존재 -> 리스트의 크기가 100만 개가 되도록 선언
+    - 총평
+        - 계수 정렬은 데이터의 크기가 한정되어 있고, 데이터의 크기가 많이 중복되어 있을수록 유리하며 항상 사용할 수는 X
+    - 기본 구현
+        ```
+        func countingSort(_ array: inout [Int]) {
+            // 최대값의 수만큼 배열을 선언해야 하므로 최대값 구하기
+            // maxElement + 1에서 1을 더함은 0 부터 인덱스를 세기때문
+            let maxElement = array.max() ?? 0
+            var countingArray = [Int](repeating: 0, count: maxElement + 1)
+
+            // 배열에서 해당 값을 counting
+            for element in array {
+                countingArray[element] += 1
+            }
+
+            // 출력배열
+            var outputArray = [Int]()
+
+            // 인덱스가 곧 값을 의미하므로, 개수만큼 배열에 추가
+            for (index, count) in countingArray.enumerated() {
+                for _ in 0..<count {
+                    outputArray.append(index)
+                }
+            }
+
+            array = outputArray
+        }
+        ```
+- 정렬 라이브러리
+    - sort(), sorted()
+        - 시간복잡도: O(NlogN)
