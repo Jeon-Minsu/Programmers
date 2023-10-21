@@ -629,12 +629,9 @@
 		206B244A29AC670400E4B00C = {
 			isa = PBXGroup;
 			children = (
-				206B245629AC670400E4B00C /* main.swift */,
 				206B245529AC670400E4B00C /* Programmers */,
-				20573C7C2A7909BF009DA912 /* Greedy */,
-				2092CEEB2A9C256100274523 /* Implementation */,
-				200A10802AC115E000E59905 /* DFS&BFS(*) */,
-				20DD84BB2AE3AAFF0072E9BC /* Sort */,
+				20DD84BE2AE3ABF80072E9BC /* 이것이 취업을 위한 코딩테스트다 */,
+				206B245629AC670400E4B00C /* main.swift */,
 				206B245429AC670400E4B00C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -651,7 +648,7 @@
 			isa = PBXGroup;
 			children = (
 				206B246129AC679600E4B00C /* Level0 */,
-				20F03C5829C8359700A733D0 /* Level1 */,
+				20DD84BF2AE3AC540072E9BC /* Level1 */,
 			);
 			path = Programmers;
 			sourceTree = "<group>";
@@ -918,7 +915,19 @@
 			path = Sort;
 			sourceTree = "<group>";
 		};
-		20F03C5829C8359700A733D0 /* Level1 */ = {
+		20DD84BE2AE3ABF80072E9BC /* 이것이 취업을 위한 코딩테스트다 */ = {
+			isa = PBXGroup;
+			children = (
+				20573C7C2A7909BF009DA912 /* Greedy */,
+				2092CEEB2A9C256100274523 /* Implementation */,
+				200A10802AC115E000E59905 /* DFS&BFS(*) */,
+				20DD84BB2AE3AAFF0072E9BC /* Sort */,
+			);
+			name = "이것이 취업을 위한 코딩테스트다";
+			path = "이것이 취업을 위한 코딩테스트다";
+			sourceTree = "<group>";
+		};
+		20DD84BF2AE3AC540072E9BC /* Level1 */ = {
 			isa = PBXGroup;
 			children = (
 				20F03C5929C835A000A733D0 /* Day1 */,
