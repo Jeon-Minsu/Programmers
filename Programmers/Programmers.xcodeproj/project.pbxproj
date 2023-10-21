@@ -518,7 +518,7 @@
 				203F7C7E29C9A8A500126DA9 /* 삼총사(*).swift */,
 				203F7C8029C9C95E00126DA9 /* 최소직사각형.swift */,
 			);
-			name = Day2;
+			path = Day2;
 			sourceTree = "<group>";
 		};
 		2045861C2AA06F810003C070 /* 알고리즘 유형별 기출문제 */ = {
@@ -545,7 +545,7 @@
 				2051E1AF29D40D2C0075B543 /* 기사단원의 무기.swift */,
 				2051E1B129D420300075B543 /* 덧칠하기(*).swift */,
 			);
-			name = Day5;
+			path = Day5;
 			sourceTree = "<group>";
 		};
 		20573C7C2A7909BF009DA912 /* Greedy */ = {
@@ -700,7 +700,7 @@
 				20A1ECD329CD789D006BFAF0 /* 과일 장수.swift */,
 				20A1ECD529CD7E62006BFAF0 /* 명예의 전당 (1)(*).swift */,
 			);
-			name = Day4;
+			path = Day4;
 			sourceTree = "<group>";
 		};
 		20897D5229B84E0400944723 /* Day7 */ = {
@@ -731,7 +731,7 @@
 				208A420F29CC340400B8F3BD /* 가장 가까운 같은 글자.swift */,
 				208A421129CC39D300B8F3BD /* 소수 찾기(**).swift */,
 			);
-			name = Day3;
+			path = Day3;
 			sourceTree = "<group>";
 		};
 		2091D05A29B59F4E00B66C00 /* Day5 */ = {
@@ -895,7 +895,7 @@
 				209948DE29D5906B00088AC9 /* [카카오 인턴] 키패드 누르기(*).swift */,
 				209948E029D5A1C400088AC9 /* 크레인 인형뽑기 게임.swift */,
 			);
-			name = Day6;
+			path = Day6;
 			sourceTree = "<group>";
 		};
 		20D138132AC126F2004D008D /* Part4 */ = {
@@ -937,8 +937,7 @@
 				2051E1AC29D3F85E0075B543 /* Day5 */,
 				209948D529D5498200088AC9 /* Day6 */,
 			);
-			name = Level1;
-			path = ..;
+			path = Level1;
 			sourceTree = "<group>";
 		};
 		20F03C5929C835A000A733D0 /* Day1 */ = {
@@ -965,7 +964,7 @@
 				20F03C7C29C8649100A733D0 /* 제일 작은 수 제거하기.swift */,
 				20F03C7E29C8673F00A733D0 /* 없는 숫자 더하기.swift */,
 			);
-			name = Day1;
+			path = Day1;
 			sourceTree = "<group>";
 		};
 		20F5AA692A83423B00858038 /* 알고리즘 유형별 기출문제 */ = {
