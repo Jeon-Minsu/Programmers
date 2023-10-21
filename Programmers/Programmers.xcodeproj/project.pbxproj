@@ -602,16 +602,6 @@
 			path = Part4;
 			sourceTree = "<group>";
 		};
-		2066326F2ADCC6E300B751EA /* Sort */ = {
-			isa = PBXGroup;
-			children = (
-				206632702ADCC6EC00B751EA /* 기본구현 */,
-				206632712ADCC70400B751EA /* 주요 알고리즘 이론과 실전 문제 */,
-			);
-			name = Sort;
-			path = "기본구현";
-			sourceTree = "<group>";
-		};
 		206632702ADCC6EC00B751EA /* 기본구현 */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,7 +634,7 @@
 				20573C7C2A7909BF009DA912 /* Greedy */,
 				2092CEEB2A9C256100274523 /* Implementation */,
 				200A10802AC115E000E59905 /* DFS&BFS(*) */,
-				2066326F2ADCC6E300B751EA /* Sort */,
+				20DD84BB2AE3AAFF0072E9BC /* Sort */,
 				206B245429AC670400E4B00C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -917,6 +907,15 @@
 				20D138112AC126ED004D008D /* 미로 탈출(*).swift */,
 			);
 			path = Part4;
+			sourceTree = "<group>";
+		};
+		20DD84BB2AE3AAFF0072E9BC /* Sort */ = {
+			isa = PBXGroup;
+			children = (
+				206632702ADCC6EC00B751EA /* 기본구현 */,
+				206632712ADCC70400B751EA /* 주요 알고리즘 이론과 실전 문제 */,
+			);
+			path = Sort;
 			sourceTree = "<group>";
 		};
 		20F03C5829C8359700A733D0 /* Level1 */ = {
