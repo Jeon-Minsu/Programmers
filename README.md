@@ -893,3 +893,33 @@
 - 정렬 라이브러리
     - sort(), sorted()
         - 시간복잡도: O(NlogN)
+
+# Binary Search
+## 주요 알고리즘 이론과 실전 문제
+### 기억할 내용
+- 이진 탐색
+    - 시간 복잡도: O(logN)
+    - 기본 구현
+        ```
+        func binarySearch(range: [Int], target: Int) -> Int? {
+            var start = 0
+            var end = range.count - 1
+
+            while start <= end {
+                let mid = (start + end) / 2
+
+                if target == range[mid] {
+                    return mid
+                } else if target < range[mid] {
+                    end = mid - 1
+                } else {
+                    start = mid + 1
+                }
+            }
+
+            return nil
+        }
+        ```
+- 이진 탐색을 인덱스만이 아닌 값으로도 접근 가능
+    - '떡볶이 떡 만들기' 문제의 경우, 이진 탐색을 인덱스가 아닌 값으로 접근하여 파라메트릭 서치 문제를 해결
+    - 결국 중요한건 탐색 범위를 좁혀나간다에 초점
