@@ -203,4 +203,7 @@ import Foundation
 //escapeMaze()
 //descendingOrder()
 //sortStudentsByScoreAscending()
-swapArrays()
+//swapArrays()
+//findPart()
+//prepareRiceCake()
+prepareRiceCake2()
