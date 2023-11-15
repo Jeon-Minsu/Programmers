@@ -206,4 +206,5 @@ import Foundation
 //swapArrays()
 //findPart()
 //prepareRiceCake()
-prepareRiceCake2()
+//prepareRiceCake2()
+futureCity()
